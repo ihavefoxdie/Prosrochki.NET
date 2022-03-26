@@ -1,65 +1,37 @@
 ﻿@model IEnumerable<Prosrochki.NET.Models.ProductModel>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <h1>Products Menu</h1>
+    <div class="form-group">
+          <a class="btn btn-primary" href="/Product/CreateForm/" role="button">Create New</a>
+    </div>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateProduced)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpirationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateProduced)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="container d-flex flex-wrap">
+    @foreach (var item in Model)
+    {
+        var name = item.Name;
+        var firstWord = name.IndexOf(" ") > -1 ? name.Substring(0, name.IndexOf(" ")) : name;
+        
+        <div class="card" style="width: 25rem;">
+          <img src="https://loremflickr.com/640/480/@firstWord?lock=@item.Id" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">Amount: @item.Amount</p>
+            <p class="card-text">Weight/Volume: @Html.DisplayFor(m => item.Weight)</p>
+            <div class="sub_div">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/Product/ShowDetails/@item.Id">Details</a></li>
+                <li><a class="dropdown-item" href="/Product/EditForm/@item.Id">Edit</a></li>
+                <li><a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+    }
+</div>

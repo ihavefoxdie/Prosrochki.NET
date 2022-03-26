@@ -8,10 +8,10 @@ namespace Prosrochki.NET.Services
 
         List<ProductModel> SearchProducts(string searchTerm);
 
-        List<ProductModel> GetProductById(int id);
+        ProductModel GetProductById(int id);
 
-        int Insert(ProductModel product);
+        void Insert(ProductModel product);
         int Update(ProductModel product);
-        int Delete(ProductModel product);
+        int Delete(int Id);
     }
 }

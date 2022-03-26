@@ -6,7 +6,7 @@ namespace Prosrochki.NET.Services
     {
         List<ProductModel> products = new List<ProductModel>();
 
-        public int Delete(ProductModel product)
+        public int Delete(int Id)
         {
             throw new NotImplementedException();
         }
@@ -18,12 +18,12 @@ namespace Prosrochki.NET.Services
             return products;
         }
 
-        public List<ProductModel> GetProductById(int id)
+        public ProductModel GetProductById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(ProductModel product)
+        public void Insert(ProductModel product)
         {
             throw new NotImplementedException();
         }

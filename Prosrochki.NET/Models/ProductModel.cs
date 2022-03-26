@@ -5,10 +5,11 @@ namespace Prosrochki.NET.Models
 {
     public class ProductModel
     {
+        [DisplayName("ID Number")]
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 1)]
+        [StringLength(40, MinimumLength = 1)]
         [DisplayName("Product's Name")]
         public string? Name { get; set; }
 
@@ -32,6 +33,12 @@ namespace Prosrochki.NET.Models
         [StringLength(500)]
         [DisplayName("Product's Description")]
         public string? Description  { get; set; }
+
+        [Display(Name = "Days until expiration")]
+        public int DateDiff
+        {
+            get { return ((ExpirationDate - DateTime.Now).Days); }
+        }
     }
 }
 
