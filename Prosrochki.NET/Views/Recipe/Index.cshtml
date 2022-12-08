@@ -36,9 +36,8 @@
                     Actions
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/Recipe/ShowDetails/@item.Id">Details</a></li>
-                    <li><a class="dropdown-item" href="/Recipe/EditForm/@item.Id">Edit</a></li>
-                    <li><a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+@*                    <li><a class="dropdown-item" href="/Recipe/EditForm/@item.Id">Edit</a></li> *@ 
+                      <li><a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
                   </ul>
                 </div>
             </td>

@@ -8,7 +8,26 @@ namespace Prosrochki.NET.Services
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public int Delete(int Id)
         {
-            throw new NotImplementedException();
+            string sqlStatement = "DELETE FROM dbo.Recipes WHERE ID = @Id";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlStatement, connection);
+                sqlCommand.Parameters.AddWithValue("@Id", Id);
+
+                try
+                {
+                    connection.Open();
+
+                    sqlCommand.ExecuteNonQuery();
+                    return Id;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return -1;
         }
 
         public List<RecipeModel> GetAllRecipes()

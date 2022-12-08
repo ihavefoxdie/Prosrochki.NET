@@ -1,0 +1,1 @@
+Publish Data-Tier application attached (dbFile.dacpac), and name the database "Test".

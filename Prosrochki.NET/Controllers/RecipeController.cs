@@ -13,12 +13,19 @@ namespace Prosrochki.NET.Controllers
             return View(recipe.GetAllRecipes());
         }
 
-        public IActionResult Create()
+        public IActionResult Create(RecipeModel recipe)
         {
+            RecipeDAO recipeDAO = new RecipeDAO();
+            recipeDAO.Insert(recipe);
             return View();
         }
 
-
+        public IActionResult Delete(int Id)
+        {
+            RecipeDAO recipeDAO = new RecipeDAO();
+            recipeDAO.Delete(Id);
+            return RedirectToAction("Index");
+        }
 
         public IActionResult CreateForm()
         {
